@@ -1,0 +1,77 @@
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 30px 40px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.card-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  min-width: 200px;
+  max-width: 220px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover {
+  background: #000;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn.left {
+  left: 10px;
+}
+
+.nav-btn.right {
+  right: 10px;
+}
