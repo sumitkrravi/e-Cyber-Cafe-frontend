@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -42,9 +41,9 @@ export default function Navbar() {
               <li className="nav-item">
                 <span className="nav-link">Hi, {user.name.split(" ")[0]}</span>
               </li>
-              {/* <li className="nav-item">
-                <button className="btn btn-d  anger btn-sm ms-2" onClick={handleLogout}>Logout</button>
-              </li> */}
+              <li className="nav-item">
+                <button className="btn btn-danger btn-sm ms-2" onClick={handleLogout}>Logout</button>
+              </li>
             </>
           )}
         </ul>
