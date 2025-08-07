@@ -32,7 +32,7 @@ export default function Dashboard() {
             Logout
           </button>
         </div>
-        <h5><strong>Email:</strong> {user.email}</h5>
+        <h5><strong>Email:</strong> {user.email}</h5> 
       </div>
     </div>
   );
