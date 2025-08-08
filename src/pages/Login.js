@@ -16,7 +16,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await axios.post("https://e-cyber-cafe-backend.onrender.com/", formData);
 
       // ✅ Save user and token to localStorage
       localStorage.setItem("user", JSON.stringify(res.data.user));
