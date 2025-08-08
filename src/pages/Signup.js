@@ -12,7 +12,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://e-cyber-cafe-backend.onrender.com/", formData);
+      const res = await axios.post("/api/auth/signup", formData);
       alert(res.data.message);
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong");
