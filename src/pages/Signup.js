@@ -1,51 +1,83 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../axiosConfig";
-import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function Signup() {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/signup", formData);
-      if (res.data.success) {
-        toast.success(res.data.message || "Signup successful!");
-        navigate("/login");
-      } else {
-        toast.error(res.data.message || "Signup failed");
-      }
-    } catch (err) {
-      if (err.code === "ERR_NETWORK") {
-        toast.error("Server not responding. Please try later.");
-      } else {
-        toast.error(err.response?.data?.message || "Something went wrong");
-      }
+      const res = await axios.post("/api/auth/signup", formData);
+      alert(res.data.message);
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
     }
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-        <button type="submit">Signup</button>
-      </form>
+    <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light px-3">
+      <div className="card shadow p-4 w-100" style={{ maxWidth: "450px" }}>
+        <h2 className="text-center text-primary mb-4">Create Account</h2>
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Full Name</label>
+            <input
+              name="name"
+              type="text"
+              className="form-control"
+              placeholder="Enter your full name"
+              required
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Email address</label>
+            <input
+              name="email"
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              required
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              name="password"
+              type="password"
+              className="form-control"
+              placeholder="Create a password"
+              required
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="d-grid mb-3">
+            <button type="submit" className="btn btn-primary">
+              Sign Up
+            </button>
+          </div>
+        </form>
+
+        <div className="text-center">
+          <small>
+            Already have an account?{" "}
+            <Link to="/login" className="text-decoration-none">
+              Login here
+            </Link>
+          </small>
+        </div>
+      </div>
     </div>
   );
 }
